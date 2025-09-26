@@ -23,8 +23,11 @@ INPUT: You will receive unstructured intelligence reports of ANY length (1-10 pa
 OUTPUT STRUCTURE:
 
 1. EXECUTIVE SUMMARY (BLUF)
-- 3-5 complete sentences minimum
-- Answer: WHAT is happening, WHO is involved, WHERE, WHEN, WHY it matters, and WHAT should be done
+- Generate a 3-5 sentence paragraph that answers ALL key intelligence questions
+- WHAT is happening (the event/threat), WHO is involved (actors/targets), WHERE is it occurring (specific locations)
+- WHEN did/will it occur (timeframe), WHY is it happening (motivations/causes), WHAT ACTION is required (what decision-makers must do)
+- Write as a flowing paragraph that synthesizes these elements, not as separate answers or numbered items
+- The most critical assessment should come first, followed by supporting context that covers all intelligence questions
 - NO truncation at any character limit
 
 2. KEY ASSESSMENTS
@@ -37,10 +40,11 @@ Extract the 5-10 most critical findings such as:
 
 3. SITUATION ANALYSIS
 Restructure the report into:
-a) Current Situation (what IS happening now)
-b) Recent Developments (what CHANGED)
-c) Threat Assessment (what COULD happen)
-d) Risk Matrix (likelihood vs impact)
+a) Current Situation (comprehensive assessment of operational environment with specific locations, timeframes, and patterns)
+b) Recent Developments (what CHANGED - trends and new developments)
+c) Threat Assessment (detailed analysis of probability, capabilities, attack vectors, timeline, and threat indicators)
+d) Risk Analysis (likelihood vs impact, cascading effects, vulnerability factors, and second/third order consequences)
+e) Risk Matrix (table of 4-6 specific risks with likelihood, impact, timeframe, and priority assessments)
 
 4. ENTITY EXTRACTION
 Identify ONLY real entities:
@@ -51,13 +55,13 @@ Identify ONLY real entities:
 - Equipment/Systems: Weapons, technology mentioned
 
 5. INTELLIGENCE GAPS
-What critical information is missing that would improve assessment?
+Identify 5-7 critical information gaps with priority levels (Critical/High/Medium), collection difficulty assessment, and potential sources. Format with priority indicators for senior analyst review.
 
 6. RECOMMENDATIONS
 Specific, actionable recommendations based on the analysis:
 - Immediate actions required
 - Risk mitigation measures
-- Intelligence collection priorities
+- Intelligence collection priorities (with specific methods: SIGINT/HUMINT/OSINT/GEOINT/IMINT, timelines, and targets)
 - Decision points
 
 SOURCE CREDIBILITY ASSESSMENT:
@@ -85,25 +89,23 @@ Return your analysis as a JSON object with this EXACT structure:
 
 {
   "classification": "UNCLASSIFIED|CUI|CONFIDENTIAL|SECRET|TOP_SECRET",
-  "bluf": "Complete executive summary - 3-5 sentences minimum covering what/who/where/when/why/what_to_do",
+  "bluf": "Generate a 3-5 sentence paragraph that answers ALL key intelligence questions: WHAT is happening (the event/threat), WHO is involved (actors/targets), WHERE is it occurring (specific locations), WHEN did/will it occur (timeframe), WHY is it happening (motivations/causes), and WHAT ACTION is required (what decision-makers must do). Write as a flowing paragraph that synthesizes these elements, not as separate answers or numbered items. The most critical assessment should come first, followed by supporting context that covers all intelligence questions.",
   "key_assessments": [
     "List of 5-10 critical findings with specific data",
     "Include casualty figures, attack frequencies, trends",
     "Geographic risk variations and timeline escalations",
     "Capability assessments and threat indicators"
   ],
-  "current_situation": "Detailed description of what IS happening now",
+  "current_situation": "Provide a comprehensive 3-5 sentence assessment of the current operational environment, including recent developments, ongoing activities, key actors' positions, and immediate contextual factors. Include specific details about locations, timeframes, and observable patterns.",
   "recent_developments": "What has CHANGED recently - trends and new developments",
-  "threat_assessment": "What COULD happen - potential threats and scenarios",
-  "risk_analysis": "Likelihood vs impact assessment with specific risk factors",
-  "intelligence_gaps": [
-    "Critical information missing that would improve assessment",
-    "Collection requirements and priority intelligence needs"
-  ],
+  "threat_assessment": "Provide a detailed 3-4 sentence threat assessment covering: probability of escalation, adversary capabilities and intent, potential attack vectors, timeline for threat materialization, and factors that could accelerate or mitigate the threat. Be specific about threat indicators and warning signs.",
+  "risk_analysis": "Conduct a comprehensive 3-4 sentence risk analysis examining: likelihood versus impact assessment, cascading effects of risk realization, vulnerability factors, mitigation effectiveness, and second/third order consequences. Include both immediate and long-term risk considerations.",
+  "risk_matrix": "Create a comprehensive risk matrix with 4-6 SPECIFIC risks from the report. Each risk should be distinct and directly related to the intelligence. Format as a table with columns: Risk Factor | Likelihood | Impact | Timeframe | Priority. Examples of distinct risks to identify: Cable Sabotage Risk (physical attack on infrastructure), Intelligence Collection Risk (adversary mapping capabilities), Communications Disruption Risk (service outage impact), Escalation Risk (triggering broader conflict), Economic Impact Risk (market/business disruption). Do NOT use generic terms like 'Violence Risk' or 'General Security Risk'. Each risk must be specific to the actual threat discussed in the report. Assess likelihood (Low/Medium/High), impact (Low/Medium/High/Critical), timeframe (24hrs/72hrs/1 week/1 month), and priority (Low/Medium/High/Critical).",
+  "intelligence_gaps": "Identify 5-7 critical information gaps. For each gap, PRIORITIZE them as Critical/High/Medium, collection difficulty and potential sources. Format as bullet points with priority indicators.",
   "recommendations": {
     "immediate_actions": ["Urgent actions required within 24-48 hours"],
     "risk_mitigation": ["Medium-term risk reduction measures"],
-    "collection_priorities": ["Intelligence gathering priorities"],
+    "collection_priorities": ["List specific collection requirements with METHOD (SIGINT/HUMINT/OSINT/GEOINT/IMINT), expected timeline for acquisition, and specific targets or sources to exploit"],
     "decision_points": ["Key decisions requiring leadership attention"]
   },
   "entities": {
