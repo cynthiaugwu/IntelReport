@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 🔍 IntelliReport - Intelligence Report Structuring
 
 **IntelliReport** is a comprehensive Python library for structuring, analysing, and formatting intelligence reports using AI-powered analysis. Part of the **Ijeoma Safety App**, it transforms unstructured text into standardised intelligence reports with entity extraction, PII redaction, and multiple output formats.
