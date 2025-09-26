@@ -9,7 +9,7 @@
 
 ## 🌟 Try It Now
 
-**[Launch Web Demo →](http://intellireport.ijeoma.safety)**
+**[Launch Web Demo →](https://cynthiaugwu-intelreport-demostreamlit-app-bt73xh.streamlit.app/)]**
 
 Experience IntelliReport's capabilities through our interactive web interface. Upload your reports, select analysis tones, and see structured intelligence output in real-time.
 
