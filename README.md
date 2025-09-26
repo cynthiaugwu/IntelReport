@@ -1,7 +1,7 @@
 <<<<<<< HEAD
 # 🔍 IntelliReport - Intelligence Report Structuring
 
-**IntelliReport** is a comprehensive Python library for structuring, analyzing, and formatting intelligence reports using AI-powered analysis. Part of the **IJEOMA Safety Platform**, it transforms unstructured text into standardized intelligence reports with entity extraction, PII redaction, and multiple output formats.
+**IntelliReport** is a comprehensive Python library for structuring, analysing, and formatting intelligence reports using AI-powered analysis. Part of the **Ijeoma Safety App**, it transforms unstructured text into standardised intelligence reports with entity extraction, PII redaction, and multiple output formats.
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -15,11 +15,11 @@ Experience IntelliReport's capabilities through our interactive web interface. U
 
 ## 👨‍💻 For Developers
 
-IntelliReport provides a powerful API for integrating intelligence report processing into your applications. Whether you're building humanitarian response systems, corporate risk management platforms, or government analysis tools, IntelliReport adapts to your organizational tone and requirements.
+IntelliReport provides a powerful API for integrating intelligence report processing into your applications. Whether you're building humanitarian response systems, corporate risk management platforms, or government analysis tools, IntelliReport adapts to your organisational tone and requirements.
 
 ### Key Features
 
-- 🎯 **Tone-Aware Analysis** - Adapts to NGO, Corporate, or Government contexts
+- 🎯 **Tone-Aware Analysis** - Adapts to NGO, Corporate, or Professional contexts
 - 🔍 **AI-Powered Extraction** - Extracts BLUF, findings, recommendations, and entities
 - 🛡️ **PII Redaction** - Configurable privacy protection with multiple levels
 - 📊 **Multiple Formats** - Output to JSON, YAML, XML, Markdown, and HTML
@@ -70,7 +70,7 @@ ANTHROPIC_API_KEY=your-api-key-here
 from intellireport import ReportProcessor
 from intellireport.schemas import ToneType
 
-# Initialize processor
+# Initialise processor
 processor = ReportProcessor(tone=ToneType.PROFESSIONAL)
 
 # Process a report
@@ -472,19 +472,19 @@ pre-commit install
 
 ## 🗺️ Roadmap
 
-### Version 1.1 (Q2 2024)
+### Version 1.1 (Q2 2026)
 - [ ] **Multi-language Support** - Process reports in Spanish, French, Arabic
 - [ ] **Custom Schema Support** - User-defined report structures
-- [ ] **Advanced Visualization** - Charts and graphs in HTML output
-- [ ] **Performance Optimization** - 50% faster processing times
+- [ ] **Advanced Visualisation** - Charts and graphs in HTML output
+- [ ] **Performance Optimisation** - 50% faster processing times
 
-### Version 1.2 (Q3 2024)
+### Version 1.2 (Q4 2026)
 - [ ] **Real-time Processing** - WebSocket support for streaming analysis
 - [ ] **Database Integration** - Direct export to SQL databases
 - [ ] **Report Templates** - Pre-built templates for common report types
 - [ ] **Advanced Analytics** - Trend analysis across multiple reports
 
-### Version 2.0 (Q4 2024)
+### Version 2.0 (Q2 2027)
 - [ ] **Machine Learning Pipeline** - Custom model training for domain-specific analysis
 - [ ] **Multi-modal Input** - Process images, PDFs, and audio alongside text
 - [ ] **Collaborative Features** - Multi-user editing and review workflows
@@ -498,7 +498,7 @@ pre-commit install
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
@@ -511,24 +511,24 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 - **Documentation**: [https://intellireport.docs.ijeoma.safety](https://intellireport.docs.ijeoma.safety)
-- **Issues**: [GitHub Issues](https://github.com/yourusername/intellireport/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/intellireport/discussions)
+- **Issues**: [GitHub Issues](https://github.com/cynthiaugwu/intellireport/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/cynthiaugwu/intellireport/discussions)
 - **Email**: support@ijeoma.safety
 
 ## 🌍 IJEOMA Safety Platform
 
-IntelliReport is part of the broader **IJEOMA Safety Platform** - a comprehensive suite of tools for humanitarian response, crisis management, and safety operations.
+IntelliReport is the report engine of the **Ijeoma Safety App** - a comprehensive suite of tools for humanitarian response, crisis management, and field safety operations.
 
 **Learn more**: [https://ijeoma.safety](https://ijeoma.safety)
 
 ---
 
 <div align="center">
-  <strong>🔍 IntelliReport - Intelligence Report Structuring</strong><br>
-  <em>Part of the IJEOMA Safety Platform</em><br><br>
+  <strong>🔍 IntelliReport - Intelligence Report Structuring System</strong><br>
+  <em>Part of the IJEOMA Safety App</em><br><br>
 
-  [![GitHub stars](https://img.shields.io/github/stars/yourusername/intellireport?style=social)](https://github.com/yourusername/intellireport/stargazers)
-  [![Twitter Follow](https://img.shields.io/twitter/follow/IJEOMASafety?style=social)](https://twitter.com/IJEOMASafety)
+  [![GitHub stars](https://img.shields.io/github/stars/cynthiaugwu/intellireport?style=social)](https://github.com/cynthiaugwu/intellireport/stargazers)
+  [![Twitter Follow](https://img.shields.io/twitter/follow/IjeomaSafety?style=social)](https://twitter.com/IjeomaSafety)
 </div>
 =======
 # IntelliReport
