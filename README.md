@@ -509,10 +509,9 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 ## 📞 Support
 
-- **Documentation**: [https://intellireport.docs.ijeoma.safety](https://intellireport.docs.ijeoma.safety)
 - **Issues**: [GitHub Issues](https://github.com/cynthiaugwu/intellireport/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/cynthiaugwu/intellireport/discussions)
-- **Email**: support@ijeoma.safety
+- **Email**: ijeoma@geoporiskintel.com
 
 ## 🌍 IJEOMA Safety Platform
 
