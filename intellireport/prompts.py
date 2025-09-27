@@ -100,23 +100,30 @@ Return your analysis as a JSON object with this EXACT structure:
   "recent_developments": "What has CHANGED recently - trends and new developments",
   "threat_assessment": "Provide a detailed 3-4 sentence threat assessment covering: probability of escalation, adversary capabilities and intent, potential attack vectors, timeline for threat materialization, and factors that could accelerate or mitigate the threat. Be specific about threat indicators and warning signs.",
   "risk_analysis": "Conduct a comprehensive 3-4 sentence risk analysis examining: likelihood versus impact assessment, cascading effects of risk realization, vulnerability factors, mitigation effectiveness, and second/third order consequences. Include both immediate and long-term risk considerations.",
-  "risk_matrix": '''Generate a risk assessment table with 4-6 SPECIFIC, DISTINCT risks from this report.
+  "risk_matrix": '''CRITICAL: Generate EXACTLY 5 specific risks. DO NOT use generic terms.
 
-Format EXACTLY as:
-Cable Sabotage Risk | High | Critical | 72 hours | Critical
+FORBIDDEN TERMS (DO NOT USE):
+- General Security Risk
+- Operational Risk
+- Strategic Risk
+- Violence Risk
+- Overall Risk
+
+REQUIRED FORMAT - USE THESE EXACT RISK TYPES FOR THIS REPORT:
+[Specific Threat] Attack Risk | [Likelihood] | [Impact] | [Timeframe] | [Priority]
+[Specific Asset] Vulnerability Risk | [Likelihood] | [Impact] | [Timeframe] | [Priority]
+[Specific Actor] Escalation Risk | [Likelihood] | [Impact] | [Timeframe] | [Priority]
+[Specific System] Disruption Risk | [Likelihood] | [Impact] | [Timeframe] | [Priority]
+[Specific Operation] Compromise Risk | [Likelihood] | [Impact] | [Timeframe] | [Priority]
+
+For the Russian GUGI report, output should be:
+Undersea Cable Attack Risk | High | Critical | 72 hours | Critical
 Communications Intercept Risk | High | High | Ongoing | High
-Infrastructure Mapping Risk | High | Medium | 1 month | High
-Economic Disruption Risk | Medium | Critical | 24 hours | Critical
-NATO Escalation Risk | Low | High | 1 week | Medium
+GUGI Mapping Operation Risk | High | Medium | 1 month | High
+Energy Infrastructure Disruption Risk | Medium | Critical | 24 hours | Critical
+NATO Response Escalation Risk | Low | High | 1 week | Medium
 
-Each risk must be:
-- Specific to the report content (not generic 'Violence Risk')
-- Named after the actual threat (e.g., 'Cable Sabotage Risk' not 'General Risk')
-- Assessed with realistic likelihood/impact based on the intelligence
-
-Include risks like: physical attack risks, intelligence collection risks, economic impact risks, escalation risks, operational security risks.
-
-Output as a properly formatted table with headers: Risk Factor | Likelihood | Impact | Timeframe | Priority''',
+BE SPECIFIC. NAME THE ACTUAL THREATS FROM THE REPORT.''',
   "source_evaluation": "Evaluate source using standard scale: Reliability (A-Completely reliable to F-Cannot be judged) and Credibility (1-Confirmed to 6-Cannot be judged)",
   "information_cutoff": "State the date/time of the most recent information in the report",
   "indicators_warnings": "List specific observable indicators that would signal escalation or change in assessment",
