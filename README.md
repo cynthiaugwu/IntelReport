@@ -1,6 +1,6 @@
-# 🔍 IntelliReport - Intelligence Report Structuring
+# 🔍 IntelReport - Structured Intelligence Reporting System
 
-**IntelliReport** is a comprehensive Python library for structuring, analysing, and formatting intelligence reports using AI-powered analysis. Part of the **Ijeoma Safety App**, it transforms unstructured text into standardised intelligence reports with entity extraction, PII redaction, and multiple output formats.
+**IntelReport** is a comprehensive Python library for structuring, analysing, and formatting intelligence reports using AI-powered analysis. Part of the **Ijeoma Safety App**, it transforms unstructured text into standardised intelligence reports with entity extraction, PII redaction, and multiple output formats.
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: Apache License 2.0](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -10,11 +10,11 @@
 
 **[Launch Web Demo →](https://cynthiaugwu-intelreport-demostreamlit-app-bt73xh.streamlit.app/)**
 
-Experience IntelliReport's capabilities through our interactive web interface. Upload your reports, select analysis tones, and see structured intelligence output in real-time.
+Experience IntelReport's capabilities through our interactive web interface. Upload your reports, select analysis tones, and see structured intelligence output in real-time.
 
 ## 👨‍💻 For Developers
 
-IntelliReport provides a powerful API for integrating intelligence report processing into your applications. Whether you're building humanitarian response systems, corporate risk management platforms, or government analysis tools, IntelliReport adapts to your organisational tone and requirements.
+IntelReport provides a powerful API for integrating intelligence report processing into your applications. Whether you're building humanitarian response systems, corporate risk management platforms, or government analysis tools, IntelReport adapts to your organisational tone and requirements.
 
 ### Key Features
 
@@ -508,13 +508,13 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/cynthiaugwu/intellireport/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/cynthiaugwu/intellireport/discussions)
+- **Issues**: [GitHub Issues](https://github.com/cynthiaugwu/IntelReport/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/cynthiaugwu/IntelReport/discussions)
 - **Email**: ijeoma@geoporiskintel.com
 
 ## 🌍 IJEOMA Safety Platform
 
-IntelliReport is the report engine of the **Ijeoma Safety App** - an advanced safety tech product that protects people entering into challenging/remote environments through technology that works everywhere - especially where traditional security systems fail.
+IntelReport is the report engine of the **Ijeoma Safety App** - an advanced safety tech product that protects people entering into challenging/remote environments through technology that works everywhere - especially where traditional security systems fail.
 
 **Learn more**: [https://ijeoma.safety](https://ijeoma.safety)
 
