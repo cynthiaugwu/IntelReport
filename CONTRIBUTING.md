@@ -18,7 +18,7 @@
 
 ## 📜 Code of Conduct
 
-This project follows the IJEOMA Safety Platform Code of Conduct. By participating, you agree to uphold this code. Please report unacceptable behavior to [conduct@ijeoma.safety](mailto:conduct@ijeoma.safety).
+This project follows the IJEOMA Safety App Code of Conduct. By participating, you agree to uphold this code. Please report unacceptable behaviour to [ijeoma@geoporiskintel.com](mailto:ijeoma@geoporiskintel.com).
 
 ### Our Standards
 
@@ -629,12 +629,11 @@ Outstanding contributors may be featured in:
 
 - **GitHub Discussions**: General questions and ideas
 - **GitHub Issues**: Bug reports and feature requests
-- **Email**: [dev@ijeoma.safety](mailto:dev@ijeoma.safety) for private matters
+- **Email**: [ijeoma@geoporiskintel.com](mailto:ijeoma@geoporiskintel.com) for private matters
 - **Discord**: [IJEOMA Safety Community](https://discord.gg/ijeoma) (coming soon)
 
 ### Regular Events
 
-- **Monthly Community Calls**: First Friday of each month
 - **Quarterly Roadmap Reviews**: Discuss upcoming features
 - **Annual Contributors Summit**: Virtual gathering of contributors
 
@@ -642,10 +641,10 @@ Outstanding contributors may be featured in:
 
 ## 🙏 Thank You
 
-Your contributions help make intelligence analysis more accessible and effective for organizations worldwide. Together, we're building tools that support humanitarian response, corporate security, and government intelligence operations.
+Your contributions help make intelligence analysis more accessible and effective for analysts and organisations worldwide. 
 
 **Happy coding! 🚀**
 
 ---
 
-*This contributing guide is part of the IJEOMA Safety Platform documentation. For questions about this guide, please open an issue or contact [dev@ijeoma.safety](mailto:dev@ijeoma.safety).*
+*This contributing guide is part of the IJEOMA Safety Platform documentation. For questions about this guide, please open an issue or contact [ijeoma@geoporiskintel.com](mailto:ijeoma@geoporiskintel.com).*
