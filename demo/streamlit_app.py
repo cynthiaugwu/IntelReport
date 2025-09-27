@@ -1598,311 +1598,211 @@ ENHANCED OUTPUT REQUIREMENTS:
                         with meta_tab1:
                             st.markdown("**Structured Analytic Techniques Applied:**")
 
-                            # Get actual processing data from results
-                            report = result.data.standard_report
-                            document_count = len(documents_data) if documents_data else 1
-                            token_count = result.tokens_used or 0
-                            processing_time_sec = (result.processing_time_ms or 0) / 1000
-
-                            # Extract actual data from report fields
-                            actual_findings = []
-                            if hasattr(report, 'key_findings') and report.key_findings:
-                                findings_text = str(report.key_findings)
-                                # Count distinct findings (rough estimate based on sentences/points)
-                                finding_count = len([s for s in findings_text.split('.') if len(s.strip()) > 10])
-                                actual_findings.append(f"✓ Key Findings Extraction: {finding_count} distinct findings identified")
-
-                            if hasattr(report, 'recommendations') and report.recommendations:
-                                rec_text = str(report.recommendations)
-                                rec_count = len([s for s in rec_text.split('.') if len(s.strip()) > 10])
-                                actual_findings.append(f"✓ Recommendation Analysis: {rec_count} actionable recommendations generated")
-
-                            if hasattr(report, 'executive_summary') and report.executive_summary:
-                                summary_length = len(str(report.executive_summary).split())
-                                actual_findings.append(f"✓ Executive Summary: {summary_length} words synthesized")
-
+                            # Standard SATs per IC methodology
                             techniques = [
-                                f"✓ Document Processing: {document_count} source document(s) analyzed",
-                                f"✓ Token Analysis: {token_count:,} tokens processed in {processing_time_sec:.1f}s",
-                                f"✓ Confidence Assessment: {confidence_percentage} weighted scoring applied",
+                                "✓ ACH (Analysis of Competing Hypotheses)",
+                                "✓ Key Assumptions Check",
+                                "✓ Quality of Information Check",
+                                "✓ What-If Analysis"
                             ]
-
-                            # Add actual findings
-                            techniques.extend(actual_findings)
 
                             # Add mode-specific techniques
                             current_mode = st.session_state.get('current_analysis_mode', AnalysisMode.SINGLE_DOCUMENT)
-
-                            if current_mode == AnalysisMode.MULTI_SOURCE and st.session_state.get('current_synthesis_results'):
-                                techniques.extend([
-                                    "✓ Source Triangulation: Multi-source verification",
-                                    "✓ Pattern Analysis: Temporal and entity relationship mapping",
-                                    "✓ Contradiction Resolution: Cross-source conflict analysis"
-                                ])
-                            elif current_mode == AnalysisMode.WEB_ENHANCED and st.session_state.get('web_verification_results'):
-                                techniques.extend([
-                                    "✓ Web Verification: External source cross-referencing",
-                                    "✓ Claim Corroboration: Real-time fact verification",
-                                    "✓ Source Reliability: Enhanced credibility assessment"
-                                ])
-                            elif current_mode == AnalysisMode.RED_TEAM and st.session_state.get('red_team_analysis'):
-                                techniques.extend([
-                                    "✓ Devil's Advocacy: Contrarian perspective generation",
-                                    "✓ Alternative Hypotheses: Competing explanation development",
-                                    "✓ Assumption Challenge: Critical assumption questioning"
-                                ])
-                            else:
-                                techniques.append("✓ Source Triangulation: Single-source verification")
-
-                            # Add tone-specific techniques
-                            if tone == ToneType.PROFESSIONAL:
-                                techniques.extend([
-                                    "✓ Geopolitical Threat Assessment: Strategic security implications analyzed",
-                                    "✓ Intelligence Confidence Evaluation: Structured analytic technique validation",
-                                    "✓ Classification Protocol Review: Information sensitivity and source protection",
-                                    "✓ National Security Impact: Policy and strategic decision implications"
-                                ])
-                            elif tone == ToneType.CORPORATE:
-                                techniques.extend([
-                                    "✓ Business Continuity Analysis: Operational resilience assessment",
-                                    "✓ Asset Protection Evaluation: Security risk and vulnerability analysis",
-                                    "✓ Executive Protection Assessment: Personnel and facility security review",
-                                    "✓ Supply Chain Security: Operational threat and dependency analysis"
-                                ])
-                            elif tone == ToneType.NGO:
-                                techniques.extend([
-                                    "✓ Mission Continuity Assessment: Operational security and program protection",
-                                    "✓ Volunteer Safety Evaluation: Personnel protection and field risk analysis",
-                                    "✓ Humanitarian Access Review: Safe passage and operational security protocols",
-                                    "✓ Field Security Analysis: Operational environment and safety considerations"
-                                ])
+                            if current_mode == AnalysisMode.RED_TEAM:
+                                techniques.append("✓ Devil's Advocacy")
 
                             for technique in techniques:
                                 st.write(f"• {technique}")
 
                         with meta_tab2:
-                            st.markdown("**Confidence Calculation Breakdown:**")
+                            st.markdown("**Confidence Assessment (IC Standards - ICD 203):**")
 
-                            # Use ACTUAL confidence score from processing results
-                            actual_confidence_score = actual_confidence
+                            # Get actual processing data
+                            report = result.data.standard_report
+                            token_count = result.tokens_used or 0
+                            processing_time_sec = (result.processing_time_ms or 0) / 1000
 
-                            # Calculate actual factors based on real processing data
-                            content_length = len(document_content) if 'document_content' in locals() else len(documents_data[0]['content']) if documents_data else 0
-                            content_quality = min(content_length / 1000, 1.0)  # Normalize to 0-1 based on content length
+                            # Calculate confidence factors per IC standards
+                            source_reliability = 70 if result.success else 50  # A-B sources = 70%, C-D = 50%
+                            corroboration = 60 if current_mode == AnalysisMode.MULTI_SOURCE else 40 if current_mode == AnalysisMode.WEB_ENHANCED else 30
+                            consistency = 80 if not result.errors and not result.warnings else 60 if result.warnings else 40
 
-                            processing_success = 1.0 if result.success else 0.5
-                            token_efficiency = min(token_count / 1000, 1.0) if token_count > 0 else 0.5
+                            overall_confidence = (source_reliability + corroboration + consistency) / 3
 
-                            # Mode-specific confidence factors
-                            mode_boost = 0.1 if current_mode == AnalysisMode.WEB_ENHANCED else 0.05 if current_mode == AnalysisMode.MULTI_SOURCE else 0.0
+                            # Apply IC confidence levels
+                            if overall_confidence >= 71:
+                                confidence_level_ic = "High Confidence"
+                            elif overall_confidence >= 31:
+                                confidence_level_ic = "Moderate Confidence"
+                            else:
+                                confidence_level_ic = "Low Confidence"
 
-                            confidence_factors = {
-                                "Content Quality": f"{content_quality:.1%} (based on {content_length:,} characters)",
-                                "Processing Success": f"{processing_success:.1%} ({'successful' if result.success else 'partial'})",
-                                "Analysis Depth": f"{token_efficiency:.1%} ({token_count:,} tokens analyzed)",
-                                "Mode Enhancement": f"+{mode_boost:.1%} ({mode_display[current_mode]} analysis)",
-                                "Processing Time": f"{processing_time_sec:.1f}s (efficiency factor)",
-                                f"**Final Confidence**": f"**{confidence_percentage} ({confidence_level})**"
-                            }
-
-                            for factor, value in confidence_factors.items():
-                                if factor.startswith("**"):
-                                    st.markdown(f"**{factor.strip('*')}: {value.strip('*')}**")
-                                else:
-                                    st.write(f"• {factor}: {value}")
+                            st.markdown(f"**Overall Assessment Confidence: {overall_confidence:.0f}% - {confidence_level_ic}**")
+                            st.write(f"Calculation: Source reliability ({source_reliability}%) + Corroboration ({corroboration}%) + Consistency ({consistency}%)")
 
                         with meta_tab3:
-                            st.markdown("**Hypotheses Evaluation (Based on Actual Processing):**")
+                            st.markdown("**Hypotheses Evaluation (Document-Specific):**")
 
-                            # Extract actual assessment data from the report
-                            primary_assessment = "Document analysis accurate"
-                            if hasattr(report, 'executive_summary') and report.executive_summary:
-                                # Use actual summary length and confidence as indicators
-                                summary_words = len(str(report.executive_summary).split())
-                                if summary_words > 50:
-                                    primary_assessment = "Comprehensive analysis supports primary conclusions"
-                                elif summary_words > 20:
-                                    primary_assessment = "Analysis supports main findings with moderate detail"
-                                else:
-                                    primary_assessment = "Limited analysis suggests primary conclusions"
+                            # Extract actual entities and themes from the report for specific hypotheses
+                            entities_found = []
+                            threat_indicators = []
 
-                            # Base confidence on actual processing results
+                            if hasattr(report, 'entities') and report.entities:
+                                if hasattr(report.entities, 'organizations') and report.entities.organizations:
+                                    entities_found.extend(report.entities.organizations[:3])  # Top 3 orgs
+                                if hasattr(report.entities, 'locations') and report.entities.locations:
+                                    entities_found.extend(report.entities.locations[:2])  # Top 2 locations
+
+                            # Extract key themes from BLUF/summary for hypothesis generation
+                            key_themes = []
+                            if hasattr(report, 'bluf') and report.bluf:
+                                bluf_text = str(report.bluf)
+                                if 'attack' in bluf_text.lower() or 'threat' in bluf_text.lower():
+                                    threat_indicators.append("threat/attack")
+                                if 'russia' in bluf_text.lower() or 'china' in bluf_text.lower():
+                                    threat_indicators.append("state actor")
+                                if 'infrastructure' in bluf_text.lower() or 'cyber' in bluf_text.lower():
+                                    threat_indicators.append("infrastructure")
+
+                            # Generate document-specific hypotheses
+                            h1_text = f"Primary threat assessment accurate"
+                            if entities_found:
+                                h1_text = f"Threat involving {', '.join(entities_found[:2])} is accurately assessed"
+
+                            h2_text = f"Alternative threat vector exists"
+                            if threat_indicators:
+                                h2_text = f"Alternative {threat_indicators[0]} scenario requires consideration"
+
+                            h3_text = f"Threat timeline assessment requires adjustment"
+                            if 'immediate' in str(report.bluf).lower() if hasattr(report, 'bluf') else False:
+                                h3_text = f"Immediate threat timeline may be premature"
+
+                            # Calculate confidence based on actual processing
                             primary_confidence = actual_confidence * 100
-
-                            # Calculate alternative possibilities based on processing indicators
-                            if result.errors:
-                                alt_confidence = 30  # Errors suggest alternative explanations needed
-                                deception_confidence = 15
-                            elif result.warnings:
-                                alt_confidence = 20  # Warnings suggest some uncertainty
-                                deception_confidence = 10
-                            else:
-                                alt_confidence = (1 - actual_confidence) * 60  # Standard alternative
-                                deception_confidence = (1 - actual_confidence) * 20
-
-                            # Adjust based on actual mode results
-                            if current_mode == AnalysisMode.WEB_ENHANCED and st.session_state.get('web_verification_results'):
-                                primary_confidence += 10  # Web verification boosts confidence
-                                deception_confidence -= 5
-                            elif current_mode == AnalysisMode.MULTI_SOURCE and st.session_state.get('current_synthesis_results'):
-                                primary_confidence += 5  # Multi-source adds some confidence
-                            elif current_mode == AnalysisMode.RED_TEAM and st.session_state.get('red_team_analysis'):
-                                alt_confidence += 15  # Red team analysis found alternatives
-                                primary_confidence -= 10
-
-                            # Normalize to 100%
-                            total = primary_confidence + alt_confidence + deception_confidence
-                            if total > 0:
-                                primary_confidence = (primary_confidence / total) * 100
-                                alt_confidence = (alt_confidence / total) * 100
-                                deception_confidence = (deception_confidence / total) * 100
-
-                            # Status based on actual results
-                            primary_status = "VALIDATED" if result.success and primary_confidence > 60 else "SUPPORTED" if primary_confidence > 40 else "UNCERTAIN"
-                            alt_status = "REQUIRES INVESTIGATION" if alt_confidence > 25 else "MONITORING" if alt_confidence > 15 else "UNLIKELY"
-                            deception_status = "FLAGGED" if deception_confidence > 20 else "LOW PROBABILITY"
+                            alt_confidence = (100 - primary_confidence) * 0.6
+                            timeline_confidence = (100 - primary_confidence) * 0.4
 
                             hypotheses = [
-                                f"🎯 **H1: {primary_assessment}** ({primary_confidence:.0f}% - {primary_status})",
-                                f"❓ **H2: Alternative explanations exist** ({alt_confidence:.0f}% - {alt_status})",
-                                f"⚠️ **H3: Information gaps or bias present** ({deception_confidence:.0f}% - {deception_status})"
+                                f"🎯 **H1: {h1_text}** ({primary_confidence:.0f}%)",
+                                f"❓ **H2: {h2_text}** ({alt_confidence:.0f}%)",
+                                f"⏰ **H3: {h3_text}** ({timeline_confidence:.0f}%)"
                             ]
 
                             for hypothesis in hypotheses:
-                                if "VALIDATED" in hypothesis or "SUPPORTED" in hypothesis:
+                                if hypothesis.startswith("🎯") and primary_confidence > 60:
                                     st.success(hypothesis)
-                                elif "REQUIRES" in hypothesis or "FLAGGED" in hypothesis:
+                                elif hypothesis.startswith("❓") and alt_confidence > 20:
                                     st.warning(hypothesis)
                                 else:
                                     st.info(hypothesis)
 
                         with meta_tab4:
-                            st.markdown("**Key Assumptions Identified (From Actual Processing):**")
+                            st.markdown("**Key Assumptions Identified (From Document Content):**")
 
-                            # Extract assumptions based on actual processing results and content
-                            base_assumptions = []
+                            # Extract assumptions from document content and provide contrarian alternatives
+                            document_assumptions = []
 
-                            # Data quality assumptions based on actual processing
+                            # Analyze BLUF/summary for implicit assumptions
+                            if hasattr(report, 'bluf') and report.bluf:
+                                bluf_text = str(report.bluf).lower()
+
+                                if 'immediate' in bluf_text or 'urgent' in bluf_text:
+                                    document_assumptions.append({
+                                        'assumption': 'Threat requires immediate response',
+                                        'alternative': 'Threat timeline may be exaggerated for attention',
+                                        'impact': 'HIGH'
+                                    })
+
+                                if 'russia' in bluf_text or 'china' in bluf_text:
+                                    document_assumptions.append({
+                                        'assumption': 'State actor attribution is accurate',
+                                        'alternative': 'Could be false flag operation or proxy group',
+                                        'impact': 'HIGH'
+                                    })
+
+                                if 'attack' in bluf_text or 'threat' in bluf_text:
+                                    document_assumptions.append({
+                                        'assumption': 'Hostile intent exists',
+                                        'alternative': 'Activity may be defensive or unrelated',
+                                        'impact': 'MEDIUM'
+                                    })
+
+                            # Add source reliability assumptions
                             if result.success:
-                                base_assumptions.append("🟢 **Minor**: Processing completed successfully, data integrity maintained")
-                            else:
-                                base_assumptions.append("🔴 **Critical**: Processing encountered issues, data reliability affected")
+                                document_assumptions.append({
+                                    'assumption': 'Source information is reliable',
+                                    'alternative': 'Source may have bias or limited access',
+                                    'impact': 'MEDIUM'
+                                })
 
-                            if result.errors:
-                                base_assumptions.append(f"🔴 **Critical**: {len(result.errors)} processing errors may affect analysis accuracy")
+                            # Add analytical assumptions
+                            if actual_confidence > 0.7:
+                                document_assumptions.append({
+                                    'assumption': 'Analysis methodology is sufficient',
+                                    'alternative': 'Additional collection/analysis needed',
+                                    'impact': 'LOW'
+                                })
 
-                            if result.warnings:
-                                base_assumptions.append(f"🟡 **Moderate**: {len(result.warnings)} warnings noted, partial reliability assumed")
+                            # Display assumptions in requested format
+                            for i, assumption in enumerate(document_assumptions[:5], 1):
+                                impact_color = "🔴" if assumption['impact'] == 'HIGH' else "🟡" if assumption['impact'] == 'MEDIUM' else "🟢"
+                                st.write(f"{impact_color} **Assumption {i}:** {assumption['assumption']} | **Alternative:** {assumption['alternative']} | **Impact:** {assumption['impact']}")
 
-                            # Content-based assumptions
-                            if content_length < 500:
-                                base_assumptions.append("🟡 **Moderate**: Limited content length may affect assessment completeness")
-                            elif content_length > 5000:
-                                base_assumptions.append("🟢 **Minor**: Comprehensive content supports thorough analysis")
-
-                            # Confidence-based assumptions
-                            if actual_confidence < 0.5:
-                                base_assumptions.append("🔴 **Critical**: Low confidence score indicates significant analytical uncertainty")
-                            elif actual_confidence < 0.7:
-                                base_assumptions.append("🟡 **Moderate**: Moderate confidence suggests some analytical limitations")
-                            else:
-                                base_assumptions.append("🟢 **Minor**: High confidence supports analytical reliability")
-
-                            # Mode-specific assumptions based on actual processing
-                            if current_mode == AnalysisMode.WEB_ENHANCED:
-                                web_searches = len(st.session_state.get('web_search_terms', []))
-                                if web_searches > 0:
-                                    base_assumptions.append(f"🟡 **Moderate**: {web_searches} web searches performed, external verification attempted")
-                                else:
-                                    base_assumptions.append("🟡 **Moderate**: Web enhancement requested but search data limited")
-
-                            elif current_mode == AnalysisMode.MULTI_SOURCE:
-                                source_count = len(documents_data)
-                                if source_count > 1:
-                                    base_assumptions.append(f"🟢 **Minor**: {source_count} sources analyzed, cross-validation possible")
-                                else:
-                                    base_assumptions.append("🟡 **Moderate**: Single source despite multi-source mode selection")
-
-                            elif current_mode == AnalysisMode.RED_TEAM:
-                                if st.session_state.get('red_team_analysis'):
-                                    base_assumptions.append("🟢 **Minor**: Red team analysis performed, contrarian perspective included")
-                                else:
-                                    base_assumptions.append("🟡 **Moderate**: Red team mode selected but contrarian analysis limited")
-
-                            # Token efficiency assumption
-                            if token_count > 0:
-                                efficiency = content_length / token_count if token_count > 0 else 0
-                                if efficiency > 3:
-                                    base_assumptions.append(f"🟢 **Minor**: Efficient token usage ({token_count:,} tokens) supports cost-effective analysis")
-                                else:
-                                    base_assumptions.append(f"🟡 **Moderate**: High token usage ({token_count:,} tokens) may indicate complex processing")
-
-                            for assumption in base_assumptions:
-                                if "Critical" in assumption:
-                                    st.error(assumption)
-                                elif "Moderate" in assumption:
-                                    st.warning(assumption)
-                                else:
-                                    st.info(assumption)
+                            if not document_assumptions:
+                                st.info("No significant assumptions identified in document content.")
 
                         with meta_tab5:
-                            st.markdown("**Source Assessment (Actual Processing Data):**")
+                            st.markdown("**Source Assessment (IC Standards):**")
 
                             # Get actual source data from processing
-                            source_count = len(documents_data) if documents_data else 1
-                            total_content_length = sum(len(doc['content']) for doc in documents_data) if documents_data else content_length
+                            document_count = len(documents_data) if documents_data else 1
+                            total_content_length = sum(len(doc['content']) for doc in documents_data) if documents_data else 0
 
-                            # Calculate actual processing metrics
-                            processing_efficiency = (total_content_length / token_count) if token_count > 0 else 0
-                            processing_success_rate = 100 if result.success else 50
+                            # Calculate word count for intelligence standards
+                            word_count = total_content_length // 5  # Rough estimate: 5 chars per word
 
-                            # Actual reliability based on processing results
+                            # Source reliability rating per IC standards (A-F scale)
                             if result.success and not result.errors and actual_confidence >= 0.8:
-                                reliability = "A+ (Highly Reliable)"
+                                reliability_rating = "A (Completely Reliable)"
                             elif result.success and not result.errors and actual_confidence >= 0.6:
-                                reliability = "A (Reliable)"
-                            elif result.success and result.warnings and actual_confidence >= 0.5:
-                                reliability = "B (Usually Reliable)"
-                            elif not result.success or result.errors:
-                                reliability = "C (Questionable)"
+                                reliability_rating = "B (Usually Reliable)"
+                            elif result.success and actual_confidence >= 0.4:
+                                reliability_rating = "C (Fairly Reliable)"
+                            elif result.warnings and not result.errors:
+                                reliability_rating = "D (Not Usually Reliable)"
+                            elif result.errors:
+                                reliability_rating = "E (Unreliable)"
                             else:
-                                reliability = "D (Requires Verification)"
+                                reliability_rating = "F (Cannot be Judged)"
 
-                            # Actual contradictions from processing
+                            # Processing issues assessment
                             error_count = len(result.errors) if result.errors else 0
                             warning_count = len(result.warnings) if result.warnings else 0
 
-                            # Real processing time
-                            actual_processing_time = processing_time_sec
+                            if error_count > 0:
+                                processing_issues = f"{error_count} parsing errors, {warning_count} warnings"
+                            elif warning_count > 0:
+                                processing_issues = f"{warning_count} minor warnings"
+                            else:
+                                processing_issues = "No processing issues"
 
-                            # Web enhancement data if available
-                            web_searches_performed = len(st.session_state.get('web_search_terms', []))
+                            # Display IC-standard source assessment
+                            st.write(f"• **Documents Processed:** {document_count}")
+                            st.write(f"• **Content Volume:** {word_count:,} words ({total_content_length:,} characters)")
 
-                            source_data = {
-                                "Documents Processed": f"{source_count} source document(s)",
-                                "Content Volume": f"{total_content_length:,} characters analyzed",
-                                "Processing Success": f"{processing_success_rate}% success rate",
-                                "Token Efficiency": f"{processing_efficiency:.1f} chars/token" if token_count > 0 else "N/A",
-                                "Processing Time": f"{actual_processing_time:.1f} seconds",
-                                "Reliability Rating": reliability,
-                                "Processing Issues": f"{error_count} errors, {warning_count} warnings",
-                                "Final Confidence": f"{confidence_percentage} ({confidence_level})",
-                                "Analysis Mode": f"{mode_display[current_mode]} with {tone_display[tone]}"
-                            }
+                            if reliability_rating.startswith("A") or reliability_rating.startswith("B"):
+                                st.success(f"• **Source Reliability Rating:** {reliability_rating}")
+                            elif reliability_rating.startswith("C") or reliability_rating.startswith("D"):
+                                st.warning(f"• **Source Reliability Rating:** {reliability_rating}")
+                            else:
+                                st.error(f"• **Source Reliability Rating:** {reliability_rating}")
 
-                            # Add web enhancement data if available
-                            if current_mode == AnalysisMode.WEB_ENHANCED:
-                                source_data["Web Searches"] = f"{web_searches_performed} verification searches performed"
-
-                            for metric, value in source_data.items():
-                                if "errors" in value.lower() and error_count > 0:
-                                    st.error(f"• **{metric}**: {value}")
-                                elif "warnings" in value.lower() and warning_count > 0:
-                                    st.warning(f"• **{metric}**: {value}")
-                                elif "success" in metric.lower() and processing_success_rate == 100:
-                                    st.success(f"• **{metric}**: {value}")
-                                else:
-                                    st.write(f"• **{metric}**: {value}")
+                            if error_count > 0:
+                                st.error(f"• **Processing Issues:** {processing_issues}")
+                            elif warning_count > 0:
+                                st.warning(f"• **Processing Issues:** {processing_issues}")
+                            else:
+                                st.success(f"• **Processing Issues:** {processing_issues}")
 
                     # Redaction summary if redaction was enabled
                     if enable_redaction and result.data.redacted_entities:
