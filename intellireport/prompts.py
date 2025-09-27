@@ -100,7 +100,23 @@ Return your analysis as a JSON object with this EXACT structure:
   "recent_developments": "What has CHANGED recently - trends and new developments",
   "threat_assessment": "Provide a detailed 3-4 sentence threat assessment covering: probability of escalation, adversary capabilities and intent, potential attack vectors, timeline for threat materialization, and factors that could accelerate or mitigate the threat. Be specific about threat indicators and warning signs.",
   "risk_analysis": "Conduct a comprehensive 3-4 sentence risk analysis examining: likelihood versus impact assessment, cascading effects of risk realization, vulnerability factors, mitigation effectiveness, and second/third order consequences. Include both immediate and long-term risk considerations.",
-  "risk_matrix": "Create a comprehensive risk matrix with 4-6 SPECIFIC risks from the report. Each risk should be distinct and directly related to the intelligence. Format as a table with columns: Risk Factor | Likelihood | Impact | Timeframe | Priority. Examples of distinct risks to identify: Cable Sabotage Risk (physical attack on infrastructure), Intelligence Collection Risk (adversary mapping capabilities), Communications Disruption Risk (service outage impact), Escalation Risk (triggering broader conflict), Economic Impact Risk (market/business disruption). Do NOT use generic terms like 'Violence Risk' or 'General Security Risk'. Each risk must be specific to the actual threat discussed in the report. Assess likelihood (Low/Medium/High), impact (Low/Medium/High/Critical), timeframe (24hrs/72hrs/1 week/1 month), and priority (Low/Medium/High/Critical).",
+  "risk_matrix": '''Generate a risk assessment table with 4-6 SPECIFIC, DISTINCT risks from this report.
+
+Format EXACTLY as:
+Cable Sabotage Risk | High | Critical | 72 hours | Critical
+Communications Intercept Risk | High | High | Ongoing | High
+Infrastructure Mapping Risk | High | Medium | 1 month | High
+Economic Disruption Risk | Medium | Critical | 24 hours | Critical
+NATO Escalation Risk | Low | High | 1 week | Medium
+
+Each risk must be:
+- Specific to the report content (not generic 'Violence Risk')
+- Named after the actual threat (e.g., 'Cable Sabotage Risk' not 'General Risk')
+- Assessed with realistic likelihood/impact based on the intelligence
+
+Include risks like: physical attack risks, intelligence collection risks, economic impact risks, escalation risks, operational security risks.
+
+Output as a properly formatted table with headers: Risk Factor | Likelihood | Impact | Timeframe | Priority''',
   "source_evaluation": "Evaluate source using standard scale: Reliability (A-Completely reliable to F-Cannot be judged) and Credibility (1-Confirmed to 6-Cannot be judged)",
   "information_cutoff": "State the date/time of the most recent information in the report",
   "indicators_warnings": "List specific observable indicators that would signal escalation or change in assessment",
