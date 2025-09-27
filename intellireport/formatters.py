@@ -273,15 +273,21 @@ class OutputFormatter:
             lines.append("| Risk Factor | Likelihood | Impact | Timeframe | Priority |")
             lines.append("|-------------|------------|--------|-----------|----------|")
 
-            # Extract risk indicators from the analysis text
-            risk_indicators = self._extract_risk_indicators(data.risk_analysis)
-            if risk_indicators:
-                for risk in risk_indicators:
-                    lines.append(f"| {risk['factor']} | {risk['likelihood']} | {risk['impact']} | {risk['timeframe']} | {risk['priority']} |")
+            # Use AI-generated risk matrix if available
+            if hasattr(data, 'risk_matrix') and data.risk_matrix:
+                # Parse risk matrix from AI output
+                risk_lines = data.risk_matrix.strip().split('\n')
+                for line in risk_lines:
+                    if '|' in line and line.strip() and not line.startswith('Risk Factor'):
+                        lines.append(line)
             else:
-                lines.append("| General Security Risk | Medium | High | 72 hours | High |")
-                lines.append("| Operational Risk | Medium | Medium | 1 week | Medium |")
-                lines.append("| Strategic Risk | Low | High | 1 month | Medium |")
+                # Extract risk indicators from the analysis text
+                risk_indicators = self._extract_risk_indicators(data.risk_analysis)
+                if risk_indicators:
+                    for risk in risk_indicators:
+                        lines.append(f"| {risk['factor']} | {risk['likelihood']} | {risk['impact']} | {risk['timeframe']} | {risk['priority']} |")
+                else:
+                    lines.append("| Insufficient data for risk assessment | Unknown | Unknown | TBD | Low |")
 
             lines.append("")
 
@@ -600,46 +606,47 @@ class OutputFormatter:
         return "\n".join(html_parts)
 
     def _extract_risk_indicators(self, risk_analysis: str) -> List[Dict[str, str]]:
-        """Extract risk indicators from risk analysis text for risk matrix."""
+        """Extract specific risk indicators from risk analysis text for risk matrix."""
         import re
 
         indicators = []
 
-        # Pattern matching for risk elements
-        risk_patterns = [
-            (r'security\s+risk', 'Security Risk', 'High', 'High', '48 hours', 'Critical'),
-            (r'operational\s+risk', 'Operational Risk', 'Medium', 'Medium', '1 week', 'Medium'),
-            (r'political\s+risk', 'Political Risk', 'Medium', 'High', '2 weeks', 'Medium'),
-            (r'economic\s+risk', 'Economic Risk', 'Low', 'Medium', '1 month', 'Low'),
-            (r'cyber\s+risk', 'Cyber Risk', 'Medium', 'High', '72 hours', 'High'),
-            (r'violence|attack|threat', 'Violence Risk', 'High', 'Critical', '24 hours', 'Critical'),
-            (r'escalation', 'Escalation Risk', 'Medium', 'High', '1 week', 'High'),
-        ]
-
+        # Look for specific threat entities in the text
         text_lower = risk_analysis.lower()
 
-        for pattern, factor, likelihood, impact, timeframe, priority in risk_patterns:
-            if re.search(pattern, text_lower):
+        # Extract specific threats, actors, and systems mentioned
+        threat_entities = []
+
+        # Pattern for specific entities (capitalized words that aren't generic)
+        entity_patterns = [
+            r'\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\b',  # Proper nouns
+            r'\b[A-Z]{2,}\b',  # Acronyms
+        ]
+
+        for pattern in entity_patterns:
+            matches = re.findall(pattern, risk_analysis)
+            threat_entities.extend(matches)
+
+        # Filter out generic terms
+        generic_terms = {'Security', 'Risk', 'Analysis', 'Assessment', 'Report', 'The', 'This', 'That', 'General', 'Overall', 'Current', 'Recent', 'Major', 'Critical', 'High', 'Medium', 'Low'}
+        specific_entities = [entity for entity in threat_entities if entity not in generic_terms and len(entity) > 2]
+
+        # Create specific risk indicators based on actual content
+        if specific_entities:
+            # Use first few specific entities to create targeted risks
+            for i, entity in enumerate(specific_entities[:5]):
+                risk_types = ['Attack Risk', 'Vulnerability Risk', 'Escalation Risk', 'Disruption Risk', 'Compromise Risk']
+                risk_type = risk_types[i % len(risk_types)]
+
                 indicators.append({
-                    'factor': factor,
-                    'likelihood': likelihood,
-                    'impact': impact,
-                    'timeframe': timeframe,
-                    'priority': priority
+                    'factor': f"{entity} {risk_type}",
+                    'likelihood': 'Medium',
+                    'impact': 'High',
+                    'timeframe': '72 hours',
+                    'priority': 'High'
                 })
 
-        # Remove duplicates and limit to top 5
-        seen = set()
-        unique_indicators = []
-        for indicator in indicators:
-            factor = indicator['factor']
-            if factor not in seen:
-                seen.add(factor)
-                unique_indicators.append(indicator)
-                if len(unique_indicators) >= 5:
-                    break
-
-        return unique_indicators
+        return indicators[:5]  # Limit to 5 indicators
 
     def _calculate_threat_level(self, data: StandardReport) -> str:
         """Calculate overall threat level based on report data."""
