@@ -3,7 +3,7 @@
 **IntelliReport** is a comprehensive Python library for structuring, analysing, and formatting intelligence reports using AI-powered analysis. Part of the **Ijeoma Safety App**, it transforms unstructured text into standardised intelligence reports with entity extraction, PII redaction, and multiple output formats.
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: Apache License 2.0](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 ## 🌟 Try It Now
@@ -501,11 +501,10 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 ## 🙏 Acknowledgments
 
-- **IJEOMA Safety Platform** - Core platform integration
+- **IJEOMA Safety App** - Main Hub
 - **Anthropic** - Claude AI API for intelligent analysis
 - **Pydantic** - Data validation and serialization
 - **Streamlit** - Web interface framework
-- **Contributors** - All developers who have contributed to this project
 
 ## 📞 Support
 
@@ -515,21 +514,21 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 ## 🌍 IJEOMA Safety Platform
 
-IntelliReport is the report engine of the **Ijeoma Safety App** - a comprehensive suite of tools for humanitarian response, crisis management, and field safety operations.
+IntelliReport is the report engine of the **Ijeoma Safety App** - an advanced safety tech product that protects people entering into challenging/remote environments through technology that works everywhere - especially where traditional security systems fail.
 
 **Learn more**: [https://ijeoma.safety](https://ijeoma.safety)
 
 ---
 
 <div align="center">
-  <strong>🔍 IntelliReport - Intelligence Report Structuring System</strong><br>
+  <strong>🔍 IntelReport - Structured Intelligence Report System</strong><br>
   <em>Part of the IJEOMA Safety App</em><br><br>
 
-  [![GitHub stars](https://img.shields.io/github/stars/cynthiaugwu/intellireport?style=social)](https://github.com/cynthiaugwu/intellireport/stargazers)
+  [![GitHub stars](https://img.shields.io/github/stars/cynthiaugwu/IntelReport?style=social)](https://github.com/cynthiaugwu/IntelReport/stargazers)
   [![Twitter Follow](https://img.shields.io/twitter/follow/IjeomaSafety?style=social)](https://twitter.com/IjeomaSafety)
 </div>
 =======
-# IntelliReport
-IntelliReport is an open-source intelligence analysis platform that transforms raw text into structured assessments. It applies invisible analytic techniques (ACH, Key Assumptions Check, source triangulation, red-teaming) to produce IC-standard outputs. Built for analysts, researchers, and decision-makers.
+# IntelReport
+IntelReport is an open-source intelligence analysis platform that transforms raw text into structured assessments. It applies invisible analytic techniques (ACH, Key Assumptions Check, source triangulation, red-teaming) to produce IC-standard outputs. Built for analysts, researchers, and decision-makers.
 >>>>>>> 94e05d7d1d98e66fb5828560db5e9697d354e7d2
 # dummy change
