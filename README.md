@@ -42,8 +42,8 @@ pip install intellireport
 ### Install from Source
 
 ```bash
-git clone https://github.com/yourusername/intellireport.git
-cd intellireport
+git clone https://github.com/yourusername/intelreport.git
+cd intelreport
 pip install -e .
 ```
 
@@ -66,8 +66,8 @@ ANTHROPIC_API_KEY=your-api-key-here
 ### Basic Usage
 
 ```python
-from intellireport import ReportProcessor
-from intellireport.schemas import ToneType
+from intelreport import ReportProcessor
+from intelreport.schemas import ToneType
 
 # Initialise processor
 processor = ReportProcessor(tone=ToneType.PROFESSIONAL)
@@ -91,7 +91,7 @@ if result.success:
 ### Tone-Specific Analysis
 
 ```python
-from intellireport.schemas import ToneType
+from intelreport.schemas import ToneType
 
 # NGO/Humanitarian tone
 ngo_result = processor.process(
@@ -115,7 +115,7 @@ prof_result = processor.process(
 ### PII Redaction
 
 ```python
-from intellireport.redactor import RedactionLevel
+from intelreport.redactor import RedactionLevel
 
 # High-level PII redaction
 result = processor.process(
@@ -131,7 +131,7 @@ print("Redacted entities:", result.data.redacted_entities)
 ### Output Formatting
 
 ```python
-from intellireport.formatters import OutputFormatter
+from intelreport.formatters import OutputFormatter
 
 formatter = OutputFormatter()
 report = result.data.standard_report
@@ -337,7 +337,7 @@ print("Classification:", result.data.standard_report.classification)
 ### Custom Extraction Patterns
 
 ```python
-from intellireport.extractors import EntityExtractor
+from intelreport.extractors import EntityExtractor
 
 extractor = EntityExtractor()
 
@@ -353,7 +353,7 @@ entities = extractor.extract_basic_entities(text, custom_patterns)
 ### Custom Redaction Rules
 
 ```python
-from intellireport.redactor import EntityRedactor
+from intelreport.redactor import EntityRedactor
 
 redactor = EntityRedactor()
 
@@ -401,7 +401,7 @@ pip install -e ".[test]"
 pytest tests/
 
 # Run with coverage
-pytest --cov=intellireport tests/
+pytest --cov=intelreport tests/
 
 # Run specific test category
 pytest tests/test_extractors.py -v
@@ -455,8 +455,8 @@ We welcome contributions! See our [Contributing Guidelines](CONTRIBUTING.md) for
 ### Development Setup
 
 ```bash
-git clone https://github.com/yourusername/intellireport.git
-cd intellireport
+git clone https://github.com/yourusername/intelreport.git
+cd intelreport
 
 # Create virtual environment
 python -m venv venv
@@ -524,11 +524,6 @@ IntelReport is the report engine of the **Ijeoma Safety App** - an advanced safe
   <strong>🔍 IntelReport - Structured Intelligence Report System</strong><br>
   <em>Part of the IJEOMA Safety App</em><br><br>
 
-  [![GitHub stars](https://img.shields.io/github/stars/cynthiaugwu/IntelReport?style=social)](https://github.com/cynthiaugwu/IntelReport/stargazers)
-  [![Twitter Follow](https://img.shields.io/twitter/follow/IjeomaSafety?style=social)](https://twitter.com/IjeomaSafety)
-</div>
 =======
 # IntelReport
 IntelReport is an open-source intelligence analysis platform that transforms raw text into structured assessments. It applies invisible analytic techniques (ACH, Key Assumptions Check, source triangulation, red-teaming) to produce IC-standard outputs. Built for analysts, researchers, and decision-makers.
->>>>>>> 94e05d7d1d98e66fb5828560db5e9697d354e7d2
-# dummy change
