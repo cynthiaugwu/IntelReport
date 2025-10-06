@@ -1,20 +1,20 @@
-# 🔍 IntelliReport - Intelligence Report Structuring
+# 🔍 IntelReport - Structured Intelligence Reporting System
 
-**IntelliReport** is a comprehensive Python library for structuring, analysing, and formatting intelligence reports using AI-powered analysis. Part of the **Ijeoma Safety App**, it transforms unstructured text into standardised intelligence reports with entity extraction, PII redaction, and multiple output formats.
+**IntelReport** is a comprehensive Python library for structuring, analysing, and formatting intelligence reports using AI-powered analysis. Part of the **Ijeoma Safety App**, it transforms unstructured text into standardised intelligence reports with entity extraction, PII redaction, and multiple output formats.
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: Apache License 2.0](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 ## 🌟 Try It Now
 
 **[Launch Web Demo →](https://cynthiaugwu-intelreport-demostreamlit-app-bt73xh.streamlit.app/)**
 
-Experience IntelliReport's capabilities through our interactive web interface. Upload your reports, select analysis tones, and see structured intelligence output in real-time.
+Experience IntelReport's capabilities through our interactive web interface. Upload your reports, select analysis tones, and see structured intelligence output in real-time.
 
 ## 👨‍💻 For Developers
 
-IntelliReport provides a powerful API for integrating intelligence report processing into your applications. Whether you're building humanitarian response systems, corporate risk management platforms, or government analysis tools, IntelliReport adapts to your organisational tone and requirements.
+IntelReport provides a powerful API for integrating intelligence report processing into your applications. Whether you're building humanitarian response systems, corporate risk management platforms, or government analysis tools, IntelReport adapts to your organisational tone and requirements.
 
 ### Key Features
 
@@ -42,8 +42,8 @@ pip install intellireport
 ### Install from Source
 
 ```bash
-git clone https://github.com/yourusername/intellireport.git
-cd intellireport
+git clone https://github.com/yourusername/intelreport.git
+cd intelreport
 pip install -e .
 ```
 
@@ -66,8 +66,8 @@ ANTHROPIC_API_KEY=your-api-key-here
 ### Basic Usage
 
 ```python
-from intellireport import ReportProcessor
-from intellireport.schemas import ToneType
+from intelreport import ReportProcessor
+from intelreport.schemas import ToneType
 
 # Initialise processor
 processor = ReportProcessor(tone=ToneType.PROFESSIONAL)
@@ -91,7 +91,7 @@ if result.success:
 ### Tone-Specific Analysis
 
 ```python
-from intellireport.schemas import ToneType
+from intelreport.schemas import ToneType
 
 # NGO/Humanitarian tone
 ngo_result = processor.process(
@@ -115,7 +115,7 @@ prof_result = processor.process(
 ### PII Redaction
 
 ```python
-from intellireport.redactor import RedactionLevel
+from intelreport.redactor import RedactionLevel
 
 # High-level PII redaction
 result = processor.process(
@@ -131,7 +131,7 @@ print("Redacted entities:", result.data.redacted_entities)
 ### Output Formatting
 
 ```python
-from intellireport.formatters import OutputFormatter
+from intelreport.formatters import OutputFormatter
 
 formatter = OutputFormatter()
 report = result.data.standard_report
@@ -337,7 +337,7 @@ print("Classification:", result.data.standard_report.classification)
 ### Custom Extraction Patterns
 
 ```python
-from intellireport.extractors import EntityExtractor
+from intelreport.extractors import EntityExtractor
 
 extractor = EntityExtractor()
 
@@ -353,7 +353,7 @@ entities = extractor.extract_basic_entities(text, custom_patterns)
 ### Custom Redaction Rules
 
 ```python
-from intellireport.redactor import EntityRedactor
+from intelreport.redactor import EntityRedactor
 
 redactor = EntityRedactor()
 
@@ -401,7 +401,7 @@ pip install -e ".[test]"
 pytest tests/
 
 # Run with coverage
-pytest --cov=intellireport tests/
+pytest --cov=intelreport tests/
 
 # Run specific test category
 pytest tests/test_extractors.py -v
@@ -455,8 +455,8 @@ We welcome contributions! See our [Contributing Guidelines](CONTRIBUTING.md) for
 ### Development Setup
 
 ```bash
-git clone https://github.com/yourusername/intellireport.git
-cd intellireport
+git clone https://github.com/yourusername/intelreport.git
+cd intelreport
 
 # Create virtual environment
 python -m venv venv
@@ -501,35 +501,29 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 ## 🙏 Acknowledgments
 
-- **IJEOMA Safety Platform** - Core platform integration
+- **IJEOMA Safety App** - Main Hub
 - **Anthropic** - Claude AI API for intelligent analysis
 - **Pydantic** - Data validation and serialization
 - **Streamlit** - Web interface framework
-- **Contributors** - All developers who have contributed to this project
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/cynthiaugwu/intellireport/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/cynthiaugwu/intellireport/discussions)
+- **Issues**: [GitHub Issues](https://github.com/cynthiaugwu/IntelReport/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/cynthiaugwu/IntelReport/discussions)
 - **Email**: ijeoma@geoporiskintel.com
 
 ## 🌍 IJEOMA Safety Platform
 
-IntelliReport is the report engine of the **Ijeoma Safety App** - a comprehensive suite of tools for humanitarian response, crisis management, and field safety operations.
+IntelReport is the report engine of the **Ijeoma Safety App** - an advanced safety tech product that protects people entering into challenging/remote environments through technology that works everywhere - especially where traditional security systems fail.
 
 **Learn more**: [https://ijeoma.safety](https://ijeoma.safety)
 
 ---
 
 <div align="center">
-  <strong>🔍 IntelliReport - Intelligence Report Structuring System</strong><br>
+  <strong>🔍 IntelReport - Structured Intelligence Report System</strong><br>
   <em>Part of the IJEOMA Safety App</em><br><br>
 
-  [![GitHub stars](https://img.shields.io/github/stars/cynthiaugwu/intellireport?style=social)](https://github.com/cynthiaugwu/intellireport/stargazers)
-  [![Twitter Follow](https://img.shields.io/twitter/follow/IjeomaSafety?style=social)](https://twitter.com/IjeomaSafety)
-</div>
 =======
-# IntelliReport
-IntelliReport is an open-source intelligence analysis platform that transforms raw text into structured assessments. It applies invisible analytic techniques (ACH, Key Assumptions Check, source triangulation, red-teaming) to produce IC-standard outputs. Built for analysts, researchers, and decision-makers.
->>>>>>> 94e05d7d1d98e66fb5828560db5e9697d354e7d2
-# dummy change
+# IntelReport
+IntelReport is an open-source intelligence analysis platform that transforms raw text into structured assessments. It applies invisible analytic techniques (ACH, Key Assumptions Check, source triangulation, red-teaming) to produce IC-standard outputs. Built for analysts, researchers, and decision-makers.
